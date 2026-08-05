@@ -36,7 +36,10 @@ export default function ContactPage() {
                   <div className="mt-1">✉️</div>
                   <div>
                     <div className="font-bold text-sm text-slate-900">Email</div>
-                    <div className="text-sm text-slate-600 mt-1">info@yonessatiyawacana.com</div>
+                    <div className="text-sm text-slate-600 mt-1 space-y-1">
+                      <div><a href="mailto:info@yonessatiyawacana.com" className="hover:text-blue-700 transition-colors">info@yonessatiyawacana.com</a></div>
+                      <div><a href="mailto:toto.sugiharso@yonessatiyawacana.com" className="hover:text-blue-700 transition-colors">toto.sugiharso@yonessatiyawacana.com</a></div>
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">

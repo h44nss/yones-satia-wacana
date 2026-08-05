@@ -31,8 +31,13 @@ export default function Footer() {
         <div className="space-y-4">
           <h4 className="font-bold text-slate-900 text-sm uppercase">Kontak</h4>
           <ul className="space-y-2 text-sm text-slate-600">
-            <li>info@yonessatiyawacana.com</li>
-            <li>+62 812 3456 7890</li>
+            <li>
+              <a href="mailto:info@yonessatiyawacana.com" className="hover:text-blue-700 transition-colors">info@yonessatiyawacana.com</a>
+            </li>
+            <li>
+              <a href="mailto:toto.sugiharso@yonessatiyawacana.com" className="hover:text-blue-700 transition-colors">toto.sugiharso@yonessatiyawacana.com</a>
+            </li>
+            <li className="pt-1">+62 812 3456 7890</li>
           </ul>
         </div>
       </div>
