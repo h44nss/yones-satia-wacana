@@ -27,7 +27,15 @@ export default function ProductsAdmin() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
+      const selectedFile = e.target.files[0];
+      // Validasi ukuran maksimal 3MB (3 * 1024 * 1024 bytes)
+      if (selectedFile.size > 3 * 1024 * 1024) {
+        alert("Ukuran gambar terlalu besar. Maksimal 3 MB!");
+        // Reset input
+        e.target.value = "";
+        return;
+      }
+      setFile(selectedFile);
     }
   };
 
@@ -160,6 +168,7 @@ export default function ProductsAdmin() {
                     <div className="flex flex-col items-center text-slate-500 space-y-2">
                       <UploadCloud className="w-6 h-6" />
                       <span className="text-xs font-semibold">Klik untuk memilih gambar (.jpg/.png)</span>
+                      <span className="text-[10px] text-slate-400">Maksimal 3 MB</span>
                     </div>
                   )}
                 </div>
