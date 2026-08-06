@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,7 +7,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
         <div className="space-y-4 col-span-1">
           <div className="text-xl font-bold text-slate-900 flex items-center gap-3">
-            <img src="/logo.png" alt="Logo PT Yones Satiya Wacana" className="h-12 w-auto object-contain" />
+            <Image src="/logo.png" alt="Logo PT Yones Satiya Wacana" width={48} height={48} className="h-12 w-auto object-contain" />
             <div>PT Yones Satiya <br/> Wacana</div>
           </div>
           <p className="text-sm text-slate-500">

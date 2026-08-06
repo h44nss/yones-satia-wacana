@@ -1,23 +1,15 @@
-"use client";
-import { motion, Variants } from "framer-motion";
-import Link from "next/link";
+// Server components untuk konten statis — tidak ada JS yang dikirim ke client
+// Hanya animasi (framer-motion) yang butuh "use client"
 import Image from "next/image";
-
-const scrollVariant: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
-const containerVariant: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-};
+import Link from "next/link";
+import { HeroAnimWrapper, SectionAnimWrapper, CardAnimWrapper } from "./HomeAnimWrappers";
+import { InquiryForm } from "./InquiryForm";
 
 /* ── Hero ── */
 export function HeroSection() {
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-16 grid md:grid-cols-2 gap-12 items-center">
-      <motion.div className="space-y-6" initial="hidden" animate="visible" variants={scrollVariant}>
+      <HeroAnimWrapper>
         <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">
           AGRIBISNIS INDONESIA UNTUK PASAR GLOBAL
         </div>
@@ -42,14 +34,9 @@ export function HeroSection() {
             <span className="w-2 h-2 rounded-full bg-blue-700" /> Lihat Detail Produk
           </Link>
         </div>
-      </motion.div>
+      </HeroAnimWrapper>
 
-      <motion.div
-        className="h-[500px] relative"
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
+      <SectionAnimWrapper className="h-[500px] relative" delay={0.1}>
         <Image
           src="/images/hero.png"
           alt="Palm Plantation"
@@ -58,48 +45,37 @@ export function HeroSection() {
           className="object-cover rounded-[15px] shadow-sm"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
-      </motion.div>
+      </SectionAnimWrapper>
     </section>
   );
 }
 
 /* ── Stats ── */
 export function StatsSection() {
+  const stats = [
+    { value: "2015", label: "Berdiri Sejak" },
+    { value: "Global", label: "Jangkauan Pasar" },
+    { value: "Premium", label: "Kualitas Produk" },
+    { value: "ISO", label: "Standar Sertifikasi" },
+  ];
   return (
-    <motion.section
-      className="border-y border-slate-200 bg-white"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={scrollVariant}
-    >
+    <SectionAnimWrapper className="border-y border-slate-200 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-100">
-        {[
-          { value: "2015", label: "Berdiri Sejak" },
-          { value: "Global", label: "Jangkauan Pasar" },
-          { value: "Premium", label: "Kualitas Produk" },
-          { value: "ISO", label: "Standar Sertifikasi" },
-        ].map((s) => (
+        {stats.map((s) => (
           <div key={s.label} className="space-y-1">
             <div className="text-3xl font-bold text-slate-900">{s.value}</div>
             <div className="text-xs font-semibold uppercase text-slate-500 tracking-wider">{s.label}</div>
           </div>
         ))}
       </div>
-    </motion.section>
+    </SectionAnimWrapper>
   );
 }
 
 /* ── Intro ── */
 export function IntroSection() {
   return (
-    <motion.section
-      className="max-w-7xl mx-auto px-4 md:px-8 py-24 grid md:grid-cols-2 gap-16 items-center"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={scrollVariant}
-    >
+    <SectionAnimWrapper className="max-w-7xl mx-auto px-4 md:px-8 py-24 grid md:grid-cols-2 gap-16 items-center">
       <div className="h-[400px] relative">
         <Image
           src="/images/factory.png"
@@ -126,7 +102,7 @@ export function IntroSection() {
           </Link>
         </div>
       </div>
-    </motion.section>
+    </SectionAnimWrapper>
   );
 }
 
@@ -141,24 +117,14 @@ export function KeunggulanSection() {
 
   return (
     <section className="bg-slate-50 py-24 border-t border-slate-200">
-      <motion.div
-        className="max-w-7xl mx-auto px-4 md:px-8 space-y-16"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariant}
-      >
+      <SectionAnimWrapper className="max-w-7xl mx-auto px-4 md:px-8 space-y-16">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-slate-900">Keunggulan Kemitraan Kami</h2>
           <p className="text-slate-600 text-sm">Fokus utama kami adalah menyediakan minyak sawit berkualitas tinggi bagi pasar global.</p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((item) => (
-            <motion.div
-              key={item.title}
-              variants={scrollVariant}
-              className="bg-white p-8 border border-slate-200 rounded-[15px] space-y-6 shadow-sm hover:-translate-y-1 transition-transform"
-            >
+          {items.map((item, i) => (
+            <CardAnimWrapper key={item.title} delay={i * 0.1}>
               <div className="w-10 h-10 bg-blue-900 text-white flex items-center justify-center font-bold text-xs rounded-[15px]">
                 {item.icon}
               </div>
@@ -166,10 +132,10 @@ export function KeunggulanSection() {
                 <h3 className="font-bold text-slate-900 text-lg">{item.title}</h3>
                 <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
               </div>
-            </motion.div>
+            </CardAnimWrapper>
           ))}
         </div>
-      </motion.div>
+      </SectionAnimWrapper>
     </section>
   );
 }
@@ -177,13 +143,7 @@ export function KeunggulanSection() {
 /* ── Produk Preview ── */
 export function ProdukPreviewSection() {
   return (
-    <motion.section
-      className="max-w-7xl mx-auto px-4 md:px-8 py-24 space-y-12"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={scrollVariant}
-    >
+    <SectionAnimWrapper className="max-w-7xl mx-auto px-4 md:px-8 py-24 space-y-12">
       <div className="text-center">
         <h2 className="text-3xl font-bold text-slate-900">Produk Kami</h2>
       </div>
@@ -210,20 +170,14 @@ export function ProdukPreviewSection() {
           </div>
         </div>
       </div>
-    </motion.section>
+    </SectionAnimWrapper>
   );
 }
 
 /* ── CTA / Inquiry Form ── */
 export function InquirySection() {
   return (
-    <motion.section
-      className="bg-white border-t border-slate-200 py-24"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={scrollVariant}
-    >
+    <SectionAnimWrapper className="bg-white border-t border-slate-200 py-24">
       <div className="max-w-7xl mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-16 items-center">
         <div className="space-y-6">
           <h2 className="text-4xl font-bold text-slate-900 leading-snug">Mulai Kemitraan Bersama Kami</h2>
@@ -241,39 +195,9 @@ export function InquirySection() {
         </div>
         <div className="bg-white p-8 border border-slate-200 rounded-[15px] shadow-sm">
           <h3 className="font-bold text-slate-900 mb-6 text-lg">Kirim Form Inquiry</h3>
-          <form
-            className="space-y-4"
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert("Form inquiry berhasil dikirim!");
-            }}
-          >
-            <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">NAMA LENGKAP</label>
-              <input required type="text" className="w-full border border-slate-300 bg-slate-50 p-3 rounded-[15px] text-sm focus:bg-white focus:border-black focus:ring-1 focus:ring-black outline-none transition-colors" placeholder="Masukkan nama Anda" />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">EMAIL</label>
-                <input required type="email" className="w-full border border-slate-300 bg-slate-50 p-3 rounded-[15px] text-sm focus:bg-white focus:border-black focus:ring-1 focus:ring-black outline-none transition-colors" placeholder="email@anda.com" />
-              </div>
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">NO. HP / WA</label>
-                <input required type="text" className="w-full border border-slate-300 bg-slate-50 p-3 rounded-[15px] text-sm focus:bg-white focus:border-black focus:ring-1 focus:ring-black outline-none transition-colors" placeholder="+62 812..." />
-              </div>
-            </div>
-            <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">PESAN / INQUIRY</label>
-              <textarea required rows={4} className="w-full border border-slate-300 bg-slate-50 p-3 rounded-[15px] text-sm focus:bg-white focus:border-black focus:ring-1 focus:ring-black outline-none resize-y transition-colors" placeholder="Ceritakan detail pesanan atau pertanyaan Anda..." />
-            </div>
-            <div className="pt-2">
-              <button type="submit" className="w-full bg-blue-900 text-white font-semibold py-3.5 px-4 rounded-[15px] hover:bg-blue-950 transition-colors text-sm">
-                Kirim Pertanyaan
-              </button>
-            </div>
-          </form>
+          <InquiryForm />
         </div>
       </div>
-    </motion.section>
+    </SectionAnimWrapper>
   );
 }

@@ -2,12 +2,13 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { Package, Globe, Video } from "lucide-react";
+import MaintenanceToggle from "@/components/admin/MaintenanceToggle";
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({ products: 0, portfolios: 0, videos: 0 });
-  const supabase = createClient();
 
   useEffect(() => {
+    const supabase = createClient();
     async function loadStats() {
       const p = await supabase.from("products").select("id", { count: "exact", head: true });
       const pf = await supabase.from("portfolios").select("id", { count: "exact", head: true });
@@ -15,7 +16,7 @@ export default function AdminDashboard() {
       setStats({ products: p.count || 0, portfolios: pf.count || 0, videos: v.count || 0 });
     }
     loadStats();
-  }, [supabase]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="space-y-10">
@@ -54,6 +55,12 @@ export default function AdminDashboard() {
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Total Video</div>
           </div>
         </div>
+      </div>
+
+      {/* ─── Site Settings ─── */}
+      <div>
+        <h2 className="text-lg font-bold text-slate-900 mb-3">Pengaturan Website</h2>
+        <MaintenanceToggle />
       </div>
     </div>
   );
