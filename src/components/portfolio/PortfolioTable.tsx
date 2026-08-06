@@ -35,7 +35,7 @@ export default function PortfolioTable({ portfolios }: { portfolios: Portfolio[]
               portfolios.map((p) => (
                 <tr key={p.id} className="hover:bg-slate-50 transition-colors">
                   <td className="p-6">
-                    {new Date(p.export_date).toLocaleDateString("id-ID", {
+                    {new Date(p.export_date + "T00:00:00").toLocaleDateString("id-ID", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",

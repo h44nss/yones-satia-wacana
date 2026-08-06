@@ -39,7 +39,7 @@ export function HeroSection() {
       <SectionAnimWrapper className="h-[500px] relative" delay={0.1}>
         <Image
           src="/images/hero.png"
-          alt="Palm Plantation"
+          alt="Palm oil plantation in Indonesia — PT Yones Satiya Wacana export operations"
           fill
           priority
           className="object-cover rounded-[15px] shadow-sm"
@@ -79,7 +79,7 @@ export function IntroSection() {
       <div className="h-[400px] relative">
         <Image
           src="/images/factory.png"
-          alt="Factory"
+          alt="PT Yones Satiya Wacana crude palm oil processing facility in Indonesia"
           fill
           className="object-cover rounded-[15px] border border-slate-200"
           sizes="(max-width: 768px) 100vw, 50vw"
@@ -151,7 +151,7 @@ export function ProdukPreviewSection() {
         <div className="h-[250px] bg-slate-100 border border-slate-200 overflow-hidden relative rounded-[15px]">
           <Image
             src="/images/product.png"
-            alt="Minyak Nabati"
+            alt="Crude Palm Oil (CPO) and palm oil derivatives products by PT Yones Satiya Wacana"
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-700"
             sizes="(max-width: 768px) 100vw, 50vw"

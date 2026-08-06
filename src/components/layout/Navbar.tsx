@@ -66,8 +66,13 @@ export default function Navbar() {
             {lang === "ID" ? "Hubungi Kami" : "Contact Us"}
           </Link>
         </div>
-        <button className="md:hidden p-2 text-slate-900" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button
+          className="md:hidden p-2 text-slate-900"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? "Tutup menu" : "Buka menu navigasi"}
+          aria-expanded={mobileMenuOpen}
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             {mobileMenuOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (

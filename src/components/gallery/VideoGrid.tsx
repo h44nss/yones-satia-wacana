@@ -36,14 +36,14 @@ export default function VideoGrid({ videos }: { videos: Video[] }) {
               aria-label={`Tonton video: ${vid.title}`}
             />
             <Image
-              src={`https://img.youtube.com/vi/${vid.youtube_id}/maxresdefault.jpg`}
-              alt={`Thumbnail ${vid.title}`}
+              src={`https://img.youtube.com/vi/${vid.youtube_id}/hqdefault.jpg`}
+              alt={`Thumbnail video: ${vid.title}`}
               fill
               className="object-cover opacity-70 group-hover:opacity-100 transition-opacity"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div className="absolute w-16 h-16 bg-red-600 rounded-[15px] flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform z-[5]">
-              <svg className="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8 5v14l11-7z" />
               </svg>
             </div>

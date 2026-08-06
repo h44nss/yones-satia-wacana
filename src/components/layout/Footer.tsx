@@ -38,7 +38,7 @@ export default function Footer() {
             <li>
               <a href="mailto:toto.sugiharso@yonessatiyawacana.com" className="hover:text-blue-700 transition-colors">toto.sugiharso@yonessatiyawacana.com</a>
             </li>
-            <li className="pt-1">+62 812 3456 7890</li>
+            <li className="pt-1"><a href="tel:+6281234567890" className="hover:text-blue-700 transition-colors">+62 812 3456 7890</a></li>
           </ul>
         </div>
       </div>

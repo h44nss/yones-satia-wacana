@@ -16,7 +16,7 @@ export default function ProductsAdmin() {
 
   useEffect(() => {
     loadData();
-  }, [supabase]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function loadData() {
     setLoading(true);

@@ -1,11 +1,42 @@
 import Link from 'next/link';
 
+const BASE_URL = "https://yonessatiyawacana.com";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/about#webpage`,
+      url: `${BASE_URL}/about`,
+      name: "About PT Yones Satiya Wacana | Palm Oil Export Company",
+      description:
+        "Learn about PT Yones Satiya Wacana — an Indonesian palm oil export company established in 2015. Discover our vision, mission, and commitment to sustainable CPO supply chains.",
+      isPartOf: { "@id": `${BASE_URL}/#website` },
+      about: { "@id": `${BASE_URL}/#organization` },
+      inLanguage: "id",
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+        { "@type": "ListItem", position: 2, name: "About", item: `${BASE_URL}/about` },
+      ],
+    },
+  ],
+};
+
 export default function AboutPage() {
   return (
-    <div className="bg-[#f7f9fb] min-h-screen">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="bg-[#f7f9fb] min-h-screen">
       {/* Header Section */}
       <section className="bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-20 md:py-32 max-w-4xl">
+        <div className="max-w-4xl mx-auto px-4 md:px-8 py-20 md:py-32">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-6">Membangun Kepercayaan di Setiap Tetesan</h1>
           <p className="text-lg text-slate-600 leading-relaxed">
             Sejak 2015, PT Yones Satiya Wacana telah bertransformasi dari pemain lokal ke skala internasional dengan jejak global, menjangkau mitrak bisnis di berbagai benua dengan jaminan mutu kelapa sawit premium.
@@ -101,5 +132,6 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }
