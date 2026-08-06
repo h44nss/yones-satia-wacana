@@ -48,7 +48,7 @@ export default function FAQPage() {
                 {activeTab === cat && (
                   <motion.div layoutId="faq-indicator" className="absolute left-0 top-0 bottom-0 w-[2px] bg-blue-900" />
                 )}
-                {cat}
+                <span>{cat}</span>
               </div>
             ))}
           </div>
@@ -74,7 +74,7 @@ export default function FAQPage() {
                           onClick={() => toggleQuestion(item.q)}
                           className="py-4 flex justify-between items-center text-sm font-semibold text-slate-700 cursor-pointer hover:text-black transition-colors"
                         >
-                          {item.q}
+                          <span>{item.q}</span>
                           <motion.span 
                              animate={{ rotate: openQuestion === item.q ? 45 : 0 }} 
                              className="text-slate-400 font-normal text-lg origin-center inline-block ml-4"
